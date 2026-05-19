@@ -194,7 +194,7 @@ export function InfrastructureMap() {
         <CardTitle className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <Map className="h-5 w-5 text-primary" />
-            Red simulada de tuberías
+            Red de tuberías
           </div>
 
           <Badge variant="outline" className="gap-2">

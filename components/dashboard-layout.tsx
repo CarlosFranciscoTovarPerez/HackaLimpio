@@ -47,7 +47,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname()
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#dff0f7] text-foreground">
       {sidebarOpen && (
         <div
           className="fixed inset-0 z-40 bg-slate-950/30 backdrop-blur-md lg:hidden"
@@ -68,9 +68,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 <Droplets className="h-5 w-5 text-sidebar-primary-foreground" />
               </div>
               <div>
-                <span className="block font-bold">AquaComunidad</span>
+                <span className="block font-bold">Hydrix</span>
                 <span className="text-xs text-sidebar-foreground/60">
-                  Monitoreo hídrico SaaS
+                  Monitoreo hídrico
                 </span>
               </div>
             </Link>
@@ -156,7 +156,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
               <div>
                 <h1 className="hidden text-lg font-black tracking-tight text-foreground sm:block">
-                  Plataforma SaaS de Monitoreo Hídrico Inteligente
+                  Plataforma de Monitoreo Hídrico Inteligente
                 </h1>
                 <p className="hidden text-xs font-medium text-muted-foreground md:block">
                   Fugas, sensores, HidroIA, cuadrillas y reportes en tiempo real
@@ -166,20 +166,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
             <div className="flex items-center gap-3">
               <div className="relative">
-                <button
-                  className="flex items-center gap-2 rounded-full border border-white/70 bg-white/75 px-3.5 py-2.5 text-sm font-semibold shadow-sm backdrop-blur-xl transition-colors hover:border-primary/30 hover:bg-primary/5"
-                  onClick={() => setCommunityOpen(!communityOpen)}
-                >
-                  <Map className="h-4 w-4 text-muted-foreground" />
-                  <span className="hidden sm:inline">{selectedCommunity.name}</span>
-                  <span className="sm:hidden">Comunidad</span>
-                  <ChevronDown
-                    className={cn(
-                      'h-4 w-4 text-muted-foreground transition-transform',
-                      communityOpen && 'rotate-180'
-                    )}
-                  />
-                </button>
+                
 
                 {communityOpen && (
                   <div className="absolute right-0 z-50 mt-3 w-60 overflow-hidden rounded-2xl border border-white/70 bg-white/95 shadow-[0_22px_60px_-35px_rgba(15,23,42,0.65)] backdrop-blur-2xl">
@@ -202,9 +189,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 )}
               </div>
 
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                Simular lectura IoT
-              </Button>
+              
 
               <Button size="sm">
                 <span className="hidden sm:inline">Generar reporte</span>

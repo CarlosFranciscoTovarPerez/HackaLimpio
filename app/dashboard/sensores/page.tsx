@@ -27,10 +27,28 @@ import { sensorNodes } from '@/lib/data'
 type SensorFilter = 'Todos' | 'En línea' | 'Alerta' | 'Mantenimiento' | 'Sin señal'
 
 const statusStyle = {
-  'En línea': 'bg-success/10 text-success border-success/30',
-  Alerta: 'bg-destructive/10 text-destructive border-destructive/30',
-  Mantenimiento: 'bg-warning/10 text-warning-foreground border-warning/40',
-  'Sin señal': 'bg-muted text-muted-foreground border-border',
+  'En línea': 'border-emerald-300 bg-emerald-50 text-emerald-700',
+  Alerta: 'border-red-300 bg-red-50 text-red-700',
+  Mantenimiento: 'border-amber-300 bg-amber-50 text-amber-700',
+  'Sin señal': 'border-slate-300 bg-slate-100 text-slate-600',
+}
+
+const statusDot = {
+  'En línea': 'bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)]',
+  Alerta: 'bg-red-500 shadow-[0_0_0_4px_rgba(239,68,68,0.15)]',
+  Mantenimiento: 'bg-amber-500 shadow-[0_0_0_4px_rgba(245,158,11,0.15)]',
+  'Sin señal': 'bg-slate-400 shadow-[0_0_0_4px_rgba(148,163,184,0.15)]',
+}
+
+const sensorCardStyle = {
+  'En línea':
+    'border-emerald-300 bg-emerald-50/70 shadow-[0_12px_30px_rgba(16,185,129,0.12)] ring-1 ring-emerald-100',
+  Alerta:
+    'border-red-300 bg-red-50/70 shadow-[0_12px_30px_rgba(239,68,68,0.14)] ring-1 ring-red-100',
+  Mantenimiento:
+    'border-amber-300 bg-amber-50/70 shadow-[0_12px_30px_rgba(245,158,11,0.13)] ring-1 ring-amber-100',
+  'Sin señal':
+    'border-slate-300 bg-slate-50 shadow-[0_12px_30px_rgba(100,116,139,0.12)] ring-1 ring-slate-100',
 }
 
 const typeIcon: Record<string, ComponentType<any>> = {
@@ -70,7 +88,7 @@ export default function SensoresPage() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-[2rem] border border-white/70 bg-gradient-to-br from-primary/10 via-background to-cyan-500/10 p-6">
+      <div className="rounded-[2rem] border border-sky-200 bg-gradient-to-br from-sky-100 via-white to-cyan-100 p-6 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
@@ -118,7 +136,7 @@ export default function SensoresPage() {
         <SummaryCard icon={Signal} label="Señal promedio" value={`${averageSignal}%`} />
       </div>
 
-      <Card>
+      <Card className="border-sky-200 bg-white/90 shadow-sm">
         <CardContent className="p-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="relative w-full lg:max-w-md">
@@ -147,17 +165,20 @@ export default function SensoresPage() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         {filteredSensors.map((sensor) => {
           const Icon = typeIcon[sensor.type] ?? Activity
 
           return (
-            <Card key={sensor.id}>
+            <Card
+              key={sensor.id}
+              className={`overflow-hidden rounded-[1.75rem] transition-all duration-200 hover:-translate-y-0.5 ${sensorCardStyle[sensor.status]}`}
+            >
               <CardHeader className="pb-3">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 ring-1 ring-sky-200">
                         <Icon className="h-5 w-5 text-primary" />
                       </span>
                       {sensor.name}
@@ -170,8 +191,12 @@ export default function SensoresPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">{sensor.type}</Badge>
-                    <Badge variant="outline" className={statusStyle[sensor.status]}>
+                    <Badge variant="outline" className="bg-white/80">
+                      {sensor.type}
+                    </Badge>
+
+                    <Badge variant="outline" className={`gap-2 ${statusStyle[sensor.status]}`}>
+                      <span className={`h-2 w-2 animate-pulse rounded-full ${statusDot[sensor.status]}`} />
                       {sensor.status}
                     </Badge>
                   </div>
@@ -202,30 +227,11 @@ export default function SensoresPage() {
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/70 bg-white/60 p-3 shadow-sm backdrop-blur-xl">
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-2 font-medium text-foreground">
-                        <Battery className="h-4 w-4 text-primary" />
-                        Batería
-                      </span>
-                      <span className="text-muted-foreground">{sensor.battery}%</span>
-                    </div>
-                    <Progress value={sensor.battery} />
-                  </div>
-
-                  <div className="rounded-2xl border border-white/70 bg-white/60 p-3 shadow-sm backdrop-blur-xl">
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-2 font-medium text-foreground">
-                        <Signal className="h-4 w-4 text-primary" />
-                        Señal
-                      </span>
-                      <span className="text-muted-foreground">{sensor.signal}%</span>
-                    </div>
-                    <Progress value={sensor.signal} />
-                  </div>
+                  <SensorMeter icon={Battery} label="Batería" value={sensor.battery} />
+                  <SensorMeter icon={Signal} label="Señal" value={sensor.signal} />
                 </div>
 
-                <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+                <div className="rounded-2xl border border-white/80 bg-white/75 p-4 shadow-sm">
                   <p className="text-sm font-black tracking-tight text-foreground">Interpretación del sistema</p>
                   <p className="mt-1 text-sm text-muted-foreground">{sensor.recommendation}</p>
                 </div>
@@ -248,7 +254,7 @@ function SummaryCard({
   value: string
 }) {
   return (
-    <Card>
+    <Card className="border-sky-200 bg-white/90 shadow-sm">
       <CardContent className="p-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
@@ -265,10 +271,33 @@ function SummaryCard({
   )
 }
 
+function SensorMeter({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: ComponentType<any>
+  label: string
+  value: number
+}) {
+  return (
+    <div className="rounded-2xl border border-white/80 bg-white/85 p-4 shadow-sm">
+      <div className="mb-2 flex items-center justify-between text-sm">
+        <span className="flex items-center gap-2 font-medium text-foreground">
+          <Icon className="h-4 w-4 text-primary" />
+          {label}
+        </span>
+        <span className="text-muted-foreground">{value}%</span>
+      </div>
+      <Progress value={value} />
+    </div>
+  )
+}
+
 function Reading({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/70 bg-white/60 p-3 shadow-sm backdrop-blur-xl">
-      <p className="text-xs text-muted-foreground">{label}</p>
+    <div className="rounded-2xl border border-white/80 bg-white/85 p-4 shadow-sm">
+      <p className="text-xs font-medium text-muted-foreground">{label}</p>
       <p className="mt-1 font-black tracking-tight text-foreground">{value}</p>
     </div>
   )
