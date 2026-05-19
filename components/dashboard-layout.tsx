@@ -33,7 +33,6 @@ const navigation = [
   { name: 'Tubería 3D', href: '/dashboard/tuberia-3d', icon: GitBranch },
   { name: 'Cuadrillas', href: '/dashboard/cuadrillas', icon: Users },
   { name: 'Reportes', href: '/dashboard/reports', icon: FileText },
-  { name: 'Modo Hotel', href: '/dashboard/hotel', icon: Hotel },
   { name: 'Administración', href: '/dashboard/admin', icon: Shield },
 ]
 
