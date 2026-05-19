@@ -39,7 +39,7 @@ export default function PointDetailPage({ params }: PointDetailPageProps) {
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <Droplets className="w-16 h-16 text-muted-foreground/50 mb-4" />
-        <h2 className="text-xl font-semibold text-foreground mb-2">Punto no encontrado</h2>
+        <h2 className="text-xl font-black tracking-tight text-foreground mb-2">Punto no encontrado</h2>
         <p className="text-muted-foreground mb-4">El punto de agua solicitado no existe.</p>
         <Link href="/dashboard/map">
           <Button>Volver al mapa</Button>
@@ -134,7 +134,7 @@ export default function PointDetailPage({ params }: PointDetailPageProps) {
           </Link>
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-foreground">{point.name}</h1>
+              <h1 className="text-2xl font-black tracking-tight text-foreground">{point.name}</h1>
               {isOnline ? (
                 <Wifi className="w-5 h-5 text-success" />
               ) : (
@@ -255,7 +255,7 @@ export default function PointDetailPage({ params }: PointDetailPageProps) {
                         )} />
                       </div>
                     </div>
-                    <p className="text-2xl font-bold text-foreground">{metric.value}</p>
+                    <p className="text-2xl font-black tracking-tight text-foreground">{metric.value}</p>
                     <p className="text-xs text-muted-foreground">{metric.label}</p>
                   </div>
                 )
@@ -274,7 +274,7 @@ export default function PointDetailPage({ params }: PointDetailPageProps) {
                 <AlertTriangle className="w-6 h-6 text-warning" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Recomendacion</h3>
+                <h3 className="font-black tracking-tight text-foreground mb-2">Recomendacion</h3>
                 <p className="text-muted-foreground">
                   {point.aquaRisk >= 70 
                     ? 'Revisar cloracion, evitar consumo directo, verificar posible fuga y programar abastecimiento preventivo.'

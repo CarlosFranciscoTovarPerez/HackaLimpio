@@ -80,7 +80,7 @@ export default function AlertsPage() {
                 <ShieldAlert className="w-5 h-5 text-destructive" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{alertCounts.critical}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{alertCounts.critical}</p>
                 <p className="text-xs text-muted-foreground">Criticas</p>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function AlertsPage() {
                 <AlertTriangle className="w-5 h-5 text-danger" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{alertCounts.high}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{alertCounts.high}</p>
                 <p className="text-xs text-muted-foreground">Altas</p>
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function AlertsPage() {
                 <AlertCircle className="w-5 h-5 text-warning" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{alertCounts.medium}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{alertCounts.medium}</p>
                 <p className="text-xs text-muted-foreground">Medias</p>
               </div>
             </div>
@@ -122,7 +122,7 @@ export default function AlertsPage() {
                 <Bell className="w-5 h-5 text-success" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{activeCount}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{activeCount}</p>
                 <p className="text-xs text-muted-foreground">Activas</p>
               </div>
             </div>

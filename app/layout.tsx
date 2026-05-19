@@ -1,23 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import 'leaflet/dist/leaflet.css'
 
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-inter"
-})
-
-const geistMono = Geist_Mono({ 
-  subsets: ["latin"],
-  variable: "--font-geist-mono"
-})
-
 export const metadata: Metadata = {
   title: 'AquaComunidad - Alerta Temprana para el Agua',
   description: 'Plataforma IoT de monitoreo de calidad y disponibilidad del agua para comunidades. Detecta riesgos antes de que se conviertan en crisis.',
-  generator: 'v0.app',
+  generator: 'AquaComunidad',
   keywords: ['agua', 'IoT', 'monitoreo', 'comunidad', 'calidad del agua', 'alerta temprana'],
   authors: [{ name: 'AquaComunidad' }],
   icons: {
@@ -52,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="bg-background">
-      <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

@@ -95,14 +95,14 @@ const accionesAutomaticas = [
 export default function AdminPage() {
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border bg-card p-6">
+      <section className="rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_24px_80px_-55px_rgba(15,23,42,0.72)] backdrop-blur-xl">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
             <Gauge className="h-6 w-6 text-primary" />
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-2xl font-black tracking-tight text-foreground">
               Administración de presión
             </h1>
             <p className="text-sm text-muted-foreground">
@@ -150,10 +150,10 @@ export default function AdminPage() {
 
             <CardContent className="grid gap-4 lg:grid-cols-2">
               {zonasPresion.map((zona) => (
-                <div key={zona.zona} className="rounded-2xl border bg-muted/30 p-4">
+                <div key={zona.zona} className="rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-semibold text-foreground">{zona.zona}</p>
+                      <p className="font-black tracking-tight text-foreground">{zona.zona}</p>
                       <p className="mt-1 text-sm text-muted-foreground">
                         {zona.ubicacion}
                       </p>
@@ -201,7 +201,7 @@ export default function AdminPage() {
 
             <CardContent className="grid gap-4 md:grid-cols-3">
               {reglasPresion.map((regla) => (
-                <div key={regla.titulo} className="rounded-2xl border bg-muted/30 p-4">
+                <div key={regla.titulo} className="rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
                   <p className="text-sm text-muted-foreground">{regla.titulo}</p>
                   <p className="mt-2 text-2xl font-bold text-primary">
                     {regla.valor}
@@ -229,7 +229,7 @@ export default function AdminPage() {
                 <div key={accion.titulo} className="rounded-xl border bg-muted/30 p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-semibold text-foreground">{accion.titulo}</p>
+                      <p className="font-black tracking-tight text-foreground">{accion.titulo}</p>
                       <p className="mt-1 text-sm text-muted-foreground">
                         {accion.descripcion}
                       </p>
@@ -299,7 +299,7 @@ function Resumen({
         </div>
 
         <div>
-          <p className="text-2xl font-bold text-foreground">{valor}</p>
+          <p className="text-2xl font-black tracking-tight text-foreground">{valor}</p>
           <p className="text-sm text-muted-foreground">{titulo}</p>
         </div>
       </CardContent>
@@ -322,7 +322,7 @@ function Dato({
         {icon}
         {label}
       </p>
-      <p className="mt-1 font-semibold text-foreground">{value}</p>
+      <p className="mt-1 font-black tracking-tight text-foreground">{value}</p>
     </div>
   )
 }

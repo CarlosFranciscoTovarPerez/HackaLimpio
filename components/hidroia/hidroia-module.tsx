@@ -210,7 +210,7 @@ export function HidroIAModule() {
                       <p className="text-sm text-muted-foreground">
                         Prioridad actual
                       </p>
-                      <p className="font-semibold text-foreground">
+                      <p className="font-black tracking-tight text-foreground">
                         {summary.priorityPoint}
                       </p>
                     </div>
@@ -242,7 +242,7 @@ export function HidroIAModule() {
 
           <CardContent className="space-y-4 pt-4">
             <div className="rounded-xl border border-warning/20 bg-warning/5 p-4">
-              <p className="text-sm font-semibold text-foreground">
+              <p className="text-sm font-black tracking-tight text-foreground">
                 {summary.priorityTitle}
               </p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
@@ -276,7 +276,7 @@ export function HidroIAModule() {
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-2xl font-bold text-foreground">
+                  <p className="text-2xl font-black tracking-tight text-foreground">
                     {stat.value}
                   </p>
                   <p className="truncate text-xs text-muted-foreground">
@@ -344,7 +344,7 @@ export function HidroIAModule() {
                     </div>
 
                     <div>
-                      <p className="text-sm font-semibold text-foreground">
+                      <p className="text-sm font-black tracking-tight text-foreground">
                         Respuesta de HidroIA
                       </p>
                       <p className="mt-1 text-sm leading-6 text-muted-foreground">
@@ -436,7 +436,7 @@ export function HidroIAModule() {
 
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">
-                            <h3 className="font-semibold text-foreground">
+                            <h3 className="font-black tracking-tight text-foreground">
                               {insight.title}
                             </h3>
 
@@ -513,8 +513,8 @@ export function HidroIAModule() {
             <CardContent className="space-y-4 pt-4">
               {priority ? (
                 <>
-                  <div className="rounded-xl border border-border bg-muted/30 p-4">
-                    <p className="text-sm font-semibold text-foreground">
+                  <div className="rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <p className="text-sm font-black tracking-tight text-foreground">
                       1. Diagnóstico
                     </p>
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -522,8 +522,8 @@ export function HidroIAModule() {
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border bg-muted/30 p-4">
-                    <p className="text-sm font-semibold text-foreground">
+                  <div className="rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <p className="text-sm font-black tracking-tight text-foreground">
                       2. Acción
                     </p>
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -531,8 +531,8 @@ export function HidroIAModule() {
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-border bg-muted/30 p-4">
-                    <p className="text-sm font-semibold text-foreground">
+                  <div className="rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm backdrop-blur-xl">
+                    <p className="text-sm font-black tracking-tight text-foreground">
                       3. Validación
                     </p>
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -563,11 +563,11 @@ export function HidroIAModule() {
               {hidroIAScenarios.map((scenario) => (
                 <div
                   key={scenario.id}
-                  className="rounded-xl border border-border bg-muted/30 p-4"
+                  className="rounded-2xl border border-white/70 bg-white/60 p-4 shadow-sm backdrop-blur-xl"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-semibold text-foreground">
+                      <p className="font-black tracking-tight text-foreground">
                         {scenario.title}
                       </p>
                       <p className="mt-1 text-sm text-muted-foreground">

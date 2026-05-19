@@ -47,24 +47,24 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname()
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-slate-950/30 backdrop-blur-md lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <aside
         className={cn(
-          'fixed left-0 top-0 z-50 h-full w-72 bg-sidebar text-sidebar-foreground transition-transform duration-300 lg:translate-x-0',
+          'fixed left-0 top-0 z-50 h-full w-72 border-r border-sidebar-border bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.26),transparent_18rem),linear-gradient(180deg,#071827,#0b1f35_50%,#081522)] text-sidebar-foreground shadow-[24px_0_80px_-60px_rgba(15,23,42,0.9)] transition-transform duration-300 lg:translate-x-0',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="flex h-full flex-col">
-          <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
+          <div className="flex h-20 items-center justify-between border-b border-white/10 px-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sidebar-primary">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-cyan-400 shadow-[0_16px_34px_-22px_rgba(14,165,233,0.95)]">
                 <Droplets className="h-5 w-5 text-sidebar-primary-foreground" />
               </div>
               <div>
@@ -76,7 +76,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </Link>
 
             <button
-              className="rounded p-1 hover:bg-sidebar-accent lg:hidden"
+              className="rounded-xl border border-white/10 p-2 hover:bg-white/10 lg:hidden"
               onClick={() => setSidebarOpen(false)}
               aria-label="Cerrar menú"
             >
@@ -84,7 +84,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </button>
           </div>
 
-          <nav className="flex-1 overflow-y-auto px-3 py-4">
+          <nav className="flex-1 overflow-y-auto px-3 py-5">
             <ul className="space-y-1">
               {navigation.map((item) => {
                 const isActive =
@@ -96,10 +96,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                     <Link
                       href={item.href}
                       className={cn(
-                        'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
+                        'flex items-center gap-3 rounded-2xl px-3.5 py-3 text-sm font-semibold transition-all duration-200',
                         isActive
-                          ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-                          : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                          ? 'bg-white text-slate-950 shadow-[0_18px_34px_-24px_rgba(14,165,233,0.75)]'
+                          : 'text-sidebar-foreground/70 hover:bg-white/10 hover:text-white'
                       )}
                       onClick={() => setSidebarOpen(false)}
                     >
@@ -124,9 +124,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </ul>
           </nav>
 
-          <div className="border-t border-sidebar-border p-4">
-            <div className="flex items-center gap-3 rounded-xl bg-sidebar-accent/60 px-3 py-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sidebar-primary">
+          <div className="border-t border-white/10 p-4">
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/10 px-3 py-3 shadow-inner backdrop-blur-xl">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-primary to-cyan-400">
                 <span className="text-sm font-medium text-sidebar-primary-foreground">
                   OP
                 </span>
@@ -143,11 +143,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       </aside>
 
       <div className="lg:pl-72">
-        <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md">
-          <div className="flex h-16 items-center justify-between px-4 lg:px-6">
+        <header className="sticky top-0 z-30 border-b border-white/70 bg-white/75 backdrop-blur-2xl">
+          <div className="flex h-20 items-center justify-between px-4 lg:px-6">
             <div className="flex items-center gap-4">
               <button
-                className="rounded-lg p-2 hover:bg-muted lg:hidden"
+                className="rounded-2xl border border-white/70 bg-white/70 p-2 shadow-sm hover:bg-primary/10 lg:hidden"
                 onClick={() => setSidebarOpen(true)}
                 aria-label="Abrir menú"
               >
@@ -155,10 +155,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               </button>
 
               <div>
-                <h1 className="hidden text-lg font-semibold text-foreground sm:block">
+                <h1 className="hidden text-lg font-black tracking-tight text-foreground sm:block">
                   Plataforma SaaS de Monitoreo Hídrico Inteligente
                 </h1>
-                <p className="hidden text-xs text-muted-foreground md:block">
+                <p className="hidden text-xs font-medium text-muted-foreground md:block">
                   Fugas, sensores, HidroIA, cuadrillas y reportes en tiempo real
                 </p>
               </div>
@@ -167,7 +167,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex items-center gap-3">
               <div className="relative">
                 <button
-                  className="flex items-center gap-2 rounded-lg bg-muted px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/80"
+                  className="flex items-center gap-2 rounded-full border border-white/70 bg-white/75 px-3.5 py-2.5 text-sm font-semibold shadow-sm backdrop-blur-xl transition-colors hover:border-primary/30 hover:bg-primary/5"
                   onClick={() => setCommunityOpen(!communityOpen)}
                 >
                   <Map className="h-4 w-4 text-muted-foreground" />
@@ -182,13 +182,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 </button>
 
                 {communityOpen && (
-                  <div className="absolute right-0 z-50 mt-2 w-56 overflow-hidden rounded-lg border border-border bg-popover shadow-lg">
+                  <div className="absolute right-0 z-50 mt-3 w-60 overflow-hidden rounded-2xl border border-white/70 bg-white/95 shadow-[0_22px_60px_-35px_rgba(15,23,42,0.65)] backdrop-blur-2xl">
                     {communities.map((community) => (
                       <button
                         key={community.id}
                         className={cn(
-                          'w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-accent',
-                          selectedCommunity.id === community.id && 'bg-accent'
+                          'w-full px-4 py-3 text-left text-sm font-medium transition-colors hover:bg-primary/10 hover:text-primary',
+                          selectedCommunity.id === community.id && 'bg-primary/10 text-primary'
                         )}
                         onClick={() => {
                           setSelectedCommunity(community)
@@ -214,10 +214,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </header>
 
-        <main className="p-4 pb-24 lg:p-6">{children}</main>
+        <main className="relative p-4 pb-24 lg:p-6"><div className="pointer-events-none fixed inset-x-72 top-24 -z-10 hidden h-80 bg-gradient-to-r from-primary/10 via-secondary/10 to-transparent blur-3xl lg:block" />{children}</main>
       </div>
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 grid grid-cols-5 border-t bg-background p-2 shadow-lg lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 grid grid-cols-5 border-t border-white/70 bg-white/90 p-2 shadow-[0_-18px_50px_-34px_rgba(15,23,42,0.65)] backdrop-blur-2xl lg:hidden">
         {navigation.slice(0, 5).map((item) => {
           const isActive =
             pathname === item.href ||
@@ -229,9 +229,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex flex-col items-center gap-1 rounded-xl p-2 text-[10px] font-medium',
+                'flex flex-col items-center gap-1 rounded-2xl p-2 text-[10px] font-semibold transition-colors',
                 isActive
-                  ? 'bg-primary/10 text-primary'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
                   : 'text-muted-foreground'
               )}
             >

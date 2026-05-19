@@ -49,7 +49,7 @@ export default function ReportsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Reportes</h1>
+          <h1 className="text-2xl font-black tracking-tight text-foreground">Reportes</h1>
           <p className="text-muted-foreground mt-1">
             Informes semanales y analisis para autoridades
           </p>
@@ -119,7 +119,7 @@ export default function ReportsPage() {
             <div className="flex items-start gap-3">
               <TrendingDown className="w-5 h-5 text-warning flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-foreground">Principal problema detectado</p>
+                <p className="font-black tracking-tight text-foreground">Principal problema detectado</p>
                 <p className="text-muted-foreground mt-1">{weeklyStats.mainProblem}</p>
               </div>
             </div>
@@ -128,18 +128,18 @@ export default function ReportsPage() {
           {/* Actions Summary */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+              <h3 className="font-black tracking-tight text-foreground mb-3 flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-primary" />
                 Acciones realizadas
               </h3>
               <div className="space-y-2">
                 <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                   <span className="text-sm text-muted-foreground">Acciones completadas</span>
-                  <span className="font-semibold text-foreground">{weeklyStats.actionsCompleted}</span>
+                  <span className="font-black tracking-tight text-foreground">{weeklyStats.actionsCompleted}</span>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                   <span className="text-sm text-muted-foreground">Acciones totales</span>
-                  <span className="font-semibold text-foreground">{weeklyStats.actionsTotal}</span>
+                  <span className="font-black tracking-tight text-foreground">{weeklyStats.actionsTotal}</span>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                   <span className="text-sm text-muted-foreground">Tasa de resolucion</span>
@@ -151,7 +151,7 @@ export default function ReportsPage() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+              <h3 className="font-black tracking-tight text-foreground mb-3 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-primary" />
                 Alertas por tipo
               </h3>
@@ -178,7 +178,7 @@ export default function ReportsPage() {
 
           {/* Recommendation */}
           <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 mb-6">
-            <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2">
+            <h3 className="font-black tracking-tight text-foreground mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-primary" />
               Recomendacion para autoridades
             </h3>
@@ -257,7 +257,7 @@ export default function ReportsPage() {
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
               <BarChart3 className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-semibold text-foreground">Reporte mensual</h3>
+            <h3 className="font-black tracking-tight text-foreground">Reporte mensual</h3>
             <p className="text-sm text-muted-foreground mt-1">
               Analisis completo del mes con tendencias y proyecciones.
             </p>
@@ -273,7 +273,7 @@ export default function ReportsPage() {
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-secondary/10 mb-4">
               <PieChart className="w-6 h-6 text-secondary" />
             </div>
-            <h3 className="font-semibold text-foreground">Reporte de calidad</h3>
+            <h3 className="font-black tracking-tight text-foreground">Reporte de calidad</h3>
             <p className="text-sm text-muted-foreground mt-1">
               Detalle de parametros de calidad del agua por punto.
             </p>
@@ -289,7 +289,7 @@ export default function ReportsPage() {
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/20 mb-4">
               <FileText className="w-6 h-6 text-accent-foreground" />
             </div>
-            <h3 className="font-semibold text-foreground">Reporte ejecutivo</h3>
+            <h3 className="font-black tracking-tight text-foreground">Reporte ejecutivo</h3>
             <p className="text-sm text-muted-foreground mt-1">
               Resumen para autoridades y tomadores de decisiones.
             </p>

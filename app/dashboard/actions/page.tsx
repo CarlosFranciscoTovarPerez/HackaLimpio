@@ -81,7 +81,7 @@ export default function ActionsPage() {
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{correctiveActions.length}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{correctiveActions.length}</p>
                 <p className="text-xs text-muted-foreground">Total acciones</p>
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function ActionsPage() {
                 <Clock className="w-5 h-5 text-warning" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{pendingCount}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{pendingCount}</p>
                 <p className="text-xs text-muted-foreground">Pendientes</p>
               </div>
             </div>
@@ -109,7 +109,7 @@ export default function ActionsPage() {
                 <Activity className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{inProgressCount}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{inProgressCount}</p>
                 <p className="text-xs text-muted-foreground">En proceso</p>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function ActionsPage() {
                 <CheckCircle className="w-5 h-5 text-success" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{resolvedCount}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{resolvedCount}</p>
                 <p className="text-xs text-muted-foreground">Resueltos</p>
               </div>
             </div>

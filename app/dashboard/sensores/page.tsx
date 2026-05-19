@@ -70,7 +70,7 @@ export default function SensoresPage() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-cyan-500/10 p-6">
+      <div className="rounded-[2rem] border border-white/70 bg-gradient-to-br from-primary/10 via-background to-cyan-500/10 p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
@@ -78,7 +78,7 @@ export default function SensoresPage() {
               Red IoT de monitoreo
             </div>
 
-            <h1 className="text-2xl font-bold text-foreground md:text-3xl">
+            <h1 className="text-2xl font-black tracking-tight text-foreground md:text-3xl">
               Sensores de presión, flujo, nivel y calidad conectados al tablero
             </h1>
 
@@ -100,7 +100,7 @@ export default function SensoresPage() {
         <Card className="border-primary/30 bg-primary/5">
           <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-semibold text-foreground">Lectura simulada recibida</p>
+              <p className="font-black tracking-tight text-foreground">Lectura simulada recibida</p>
               <p className="text-sm text-muted-foreground">
                 Se actualizó la cola de telemetría local. En producción esto vendría por MQTT, API o carga
                 programada desde los dispositivos.
@@ -202,7 +202,7 @@ export default function SensoresPage() {
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-xl border border-border bg-muted/30 p-3">
+                  <div className="rounded-2xl border border-white/70 bg-white/60 p-3 shadow-sm backdrop-blur-xl">
                     <div className="mb-2 flex items-center justify-between text-sm">
                       <span className="flex items-center gap-2 font-medium text-foreground">
                         <Battery className="h-4 w-4 text-primary" />
@@ -213,7 +213,7 @@ export default function SensoresPage() {
                     <Progress value={sensor.battery} />
                   </div>
 
-                  <div className="rounded-xl border border-border bg-muted/30 p-3">
+                  <div className="rounded-2xl border border-white/70 bg-white/60 p-3 shadow-sm backdrop-blur-xl">
                     <div className="mb-2 flex items-center justify-between text-sm">
                       <span className="flex items-center gap-2 font-medium text-foreground">
                         <Signal className="h-4 w-4 text-primary" />
@@ -226,7 +226,7 @@ export default function SensoresPage() {
                 </div>
 
                 <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
-                  <p className="text-sm font-semibold text-foreground">Interpretación del sistema</p>
+                  <p className="text-sm font-black tracking-tight text-foreground">Interpretación del sistema</p>
                   <p className="mt-1 text-sm text-muted-foreground">{sensor.recommendation}</p>
                 </div>
               </CardContent>
@@ -256,7 +256,7 @@ function SummaryCard({
           </div>
 
           <div>
-            <p className="text-2xl font-bold text-foreground">{value}</p>
+            <p className="text-2xl font-black tracking-tight text-foreground">{value}</p>
             <p className="text-xs text-muted-foreground">{label}</p>
           </div>
         </div>
@@ -267,9 +267,9 @@ function SummaryCard({
 
 function Reading({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-border bg-muted/30 p-3">
+    <div className="rounded-2xl border border-white/70 bg-white/60 p-3 shadow-sm backdrop-blur-xl">
       <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="mt-1 font-semibold text-foreground">{value}</p>
+      <p className="mt-1 font-black tracking-tight text-foreground">{value}</p>
     </div>
   )
 }

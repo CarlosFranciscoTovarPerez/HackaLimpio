@@ -47,23 +47,23 @@ export default function ReportPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background text-foreground">
         {/* Mobile Header */}
-        <header className="sticky top-0 z-50 bg-primary text-primary-foreground">
-          <div className="flex items-center justify-between p-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Droplets className="w-6 h-6" />
+        <header className="sticky top-0 z-50 border-b border-white/70 bg-white/80 text-foreground shadow-sm backdrop-blur-2xl">
+          <div className="mx-auto flex max-w-lg items-center justify-between p-4">
+            <Link href="/" className="flex items-center gap-2 font-black tracking-tight">
+              <Droplets className="h-6 w-6 text-primary" />
               <span className="font-bold">AquaComunidad</span>
             </Link>
           </div>
         </header>
 
-        <main className="p-4 flex flex-col items-center justify-center min-h-[80vh]">
-          <div className="text-center max-w-sm">
-            <div className="flex items-center justify-center w-20 h-20 rounded-full bg-success/10 mx-auto mb-6">
+        <main className="flex min-h-[80vh] flex-col items-center justify-center p-4">
+          <div className="aqua-glass max-w-sm rounded-[2rem] p-8 text-center">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-success/10">
               <CheckCircle className="w-10 h-10 text-success" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground mb-2">Reporte enviado</h1>
+            <h1 className="text-2xl font-black tracking-tight text-foreground mb-2">Reporte enviado</h1>
             <p className="text-muted-foreground mb-6">
               Tu reporte ha sido recibido. El equipo de monitoreo revisara la situacion y tomara las acciones necesarias.
             </p>
@@ -89,25 +89,25 @@ export default function ReportPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background pb-24 text-foreground">
       {/* Mobile Header */}
-      <header className="sticky top-0 z-50 bg-primary text-primary-foreground">
-        <div className="flex items-center gap-3 p-4">
+      <header className="sticky top-0 z-50 border-b border-white/70 bg-white/80 text-foreground shadow-sm backdrop-blur-2xl">
+        <div className="mx-auto flex max-w-lg items-center gap-3 p-4">
           <Link href="/">
-            <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10">
+            <Button variant="ghost" size="icon" className="text-foreground hover:bg-primary/10 hover:text-primary">
               <ArrowLeft className="w-5 h-5" />
             </Button>
           </Link>
-          <div className="flex items-center gap-2">
-            <Droplets className="w-6 h-6" />
+          <div className="flex items-center gap-2 font-black tracking-tight">
+            <Droplets className="h-6 w-6 text-primary" />
             <span className="font-bold">AquaComunidad</span>
           </div>
         </div>
       </header>
 
-      <main className="p-4 max-w-lg mx-auto">
+      <main className="mx-auto max-w-lg p-4">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Reportar problema de agua</h1>
+          <h1 className="text-2xl font-black tracking-tight text-foreground">Reportar problema de agua</h1>
           <p className="text-muted-foreground mt-1">
             Tu reporte ayuda a detectar y solucionar problemas mas rapido.
           </p>
@@ -115,9 +115,9 @@ export default function ReportPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Problem Type Selection */}
-          <Card className="bg-card">
+          <Card className="border-white/70 bg-white/80">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base font-black tracking-tight">
                 <AlertTriangle className="w-4 h-4 text-primary" />
                 Tipo de problema
               </CardTitle>
@@ -138,11 +138,11 @@ export default function ReportPage() {
                     <Label
                       htmlFor={problem.id}
                       className={cn(
-                        "flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all",
-                        "hover:bg-muted/50",
+                        "flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 p-4 transition-all",
+                        "hover:-translate-y-0.5 hover:bg-primary/5 hover:shadow-sm",
                         selectedProblem === problem.id
-                          ? "border-primary bg-primary/5"
-                          : "border-border"
+                          ? "border-primary bg-primary/10 shadow-sm"
+                          : "border-white/80"
                       )}
                     >
                       <problem.icon className={cn(
@@ -163,9 +163,9 @@ export default function ReportPage() {
           </Card>
 
           {/* Location */}
-          <Card className="bg-card">
+          <Card className="border-white/70 bg-white/80">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base font-black tracking-tight">
                 <MapPin className="w-4 h-4 text-primary" />
                 Ubicacion
               </CardTitle>
@@ -184,9 +184,9 @@ export default function ReportPage() {
           </Card>
 
           {/* Description */}
-          <Card className="bg-card">
+          <Card className="border-white/70 bg-white/80">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base font-black tracking-tight">
                 <FileText className="w-4 h-4 text-primary" />
                 Descripcion
               </CardTitle>
@@ -202,15 +202,15 @@ export default function ReportPage() {
           </Card>
 
           {/* Photo Upload */}
-          <Card className="bg-card">
+          <Card className="border-white/70 bg-white/80">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-base font-black tracking-tight">
                 <Camera className="w-4 h-4 text-primary" />
                 Foto (opcional)
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="border-2 border-dashed border-border rounded-xl p-8 text-center hover:border-primary/50 transition-colors cursor-pointer">
+              <div className="cursor-pointer rounded-2xl border-2 border-dashed border-white/80 bg-white/60 p-8 text-center transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/5">
                 <Camera className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
                 <p className="text-sm font-medium text-foreground mb-1">
                   Toca para tomar o subir foto
@@ -236,21 +236,21 @@ export default function ReportPage() {
       </main>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-border safe-area-pb">
+      <nav className="safe-area-pb fixed bottom-0 left-0 right-0 border-t border-white/70 bg-white/90 shadow-[0_-18px_50px_-34px_rgba(15,23,42,0.65)] backdrop-blur-2xl">
         <div className="flex items-center justify-around py-2">
-          <Link href="/" className="flex flex-col items-center gap-1 px-4 py-2 text-muted-foreground">
+          <Link href="/" className="flex flex-col items-center gap-1 rounded-2xl px-4 py-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
             <Home className="w-5 h-5" />
             <span className="text-xs">Inicio</span>
           </Link>
-          <Link href="/dashboard/map" className="flex flex-col items-center gap-1 px-4 py-2 text-muted-foreground">
+          <Link href="/dashboard/map" className="flex flex-col items-center gap-1 rounded-2xl px-4 py-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
             <Map className="w-5 h-5" />
             <span className="text-xs">Mapa</span>
           </Link>
-          <Link href="/dashboard/alerts" className="flex flex-col items-center gap-1 px-4 py-2 text-muted-foreground">
+          <Link href="/dashboard/alerts" className="flex flex-col items-center gap-1 rounded-2xl px-4 py-2 text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
             <Bell className="w-5 h-5" />
             <span className="text-xs">Alertas</span>
           </Link>
-          <Link href="/report" className="flex flex-col items-center gap-1 px-4 py-2 text-primary">
+          <Link href="/report" className="flex flex-col items-center gap-1 rounded-2xl bg-primary px-4 py-2 text-primary-foreground shadow-sm">
             <AlertTriangle className="w-5 h-5" />
             <span className="text-xs font-medium">Reportar</span>
           </Link>

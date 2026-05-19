@@ -67,14 +67,14 @@ export default function PrioridadesPage() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-6">
+      <div className="rounded-[2rem] border border-white/70 bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
               <ShieldAlert className="h-4 w-4" />
               Motor de prioridad operativa
             </div>
-            <h1 className="text-2xl font-bold text-foreground md:text-3xl">
+            <h1 className="text-2xl font-black tracking-tight text-foreground md:text-3xl">
               Prioriza fugas, presión y calidad antes de perder agua o servicio
             </h1>
             <p className="mt-2 max-w-3xl text-sm text-muted-foreground md:text-base">
@@ -143,7 +143,7 @@ export default function PrioridadesPage() {
                         </Badge>
                       </div>
 
-                      <h2 className="mt-3 text-lg font-semibold text-foreground">{item.title}</h2>
+                      <h2 className="mt-3 text-lg font-black tracking-tight text-foreground">{item.title}</h2>
 
                       <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
                         <MapPin className="h-4 w-4" />
@@ -171,7 +171,7 @@ export default function PrioridadesPage() {
                   </div>
 
                   <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4">
-                    <p className="text-sm font-semibold text-foreground">Acción recomendada</p>
+                    <p className="text-sm font-black tracking-tight text-foreground">Acción recomendada</p>
                     <p className="mt-1 text-sm text-muted-foreground">{item.recommendedAction}</p>
                   </div>
                 </div>
@@ -192,7 +192,7 @@ export default function PrioridadesPage() {
                     </div>
 
                     <div className="rounded-xl border border-border bg-background p-4">
-                      <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                      <p className="flex items-center gap-2 text-sm font-black tracking-tight text-foreground">
                         <Wrench className="h-4 w-4 text-primary" />
                         Cuadrilla asignada
                       </p>
@@ -225,7 +225,7 @@ function MetricCard({
   value: string
 }) {
   return (
-    <div className="rounded-xl border border-border bg-background/80 p-3 shadow-sm">
+    <div className="rounded-2xl border border-white/70 bg-white/75 p-3 shadow-sm backdrop-blur-xl">
       <Icon className="mb-2 h-4 w-4 text-primary" />
       <p className="text-lg font-bold text-foreground">{value}</p>
       <p className="text-xs text-muted-foreground">{label}</p>
@@ -237,7 +237,7 @@ function InfoPill({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-border bg-muted/40 p-3">
       <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="mt-1 font-semibold text-foreground">{value}</p>
+      <p className="mt-1 font-black tracking-tight text-foreground">{value}</p>
     </div>
   )
 }

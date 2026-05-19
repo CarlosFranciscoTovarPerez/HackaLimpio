@@ -74,7 +74,7 @@ export default function PointsPage() {
                 <Waves className="w-5 h-5 text-success" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{statusCounts.stable}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{statusCounts.stable}</p>
                 <p className="text-xs text-muted-foreground">Estables</p>
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function PointsPage() {
                 <Waves className="w-5 h-5 text-warning" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{statusCounts.review}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{statusCounts.review}</p>
                 <p className="text-xs text-muted-foreground">En revision</p>
               </div>
             </div>
@@ -102,7 +102,7 @@ export default function PointsPage() {
                 <Waves className="w-5 h-5 text-danger" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{statusCounts.high}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{statusCounts.high}</p>
                 <p className="text-xs text-muted-foreground">Riesgo alto</p>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function PointsPage() {
                 <Waves className="w-5 h-5 text-destructive" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{statusCounts.critical}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{statusCounts.critical}</p>
                 <p className="text-xs text-muted-foreground">Criticos</p>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function PointsPage() {
                 <WifiOff className="w-5 h-5 text-muted-foreground" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">{statusCounts.offline}</p>
+                <p className="text-2xl font-black tracking-tight text-foreground">{statusCounts.offline}</p>
                 <p className="text-xs text-muted-foreground">Sin conexion</p>
               </div>
             </div>
@@ -233,7 +233,7 @@ export default function PointsPage() {
 
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-foreground truncate">{point.name}</h3>
+                            <h3 className="font-black tracking-tight text-foreground truncate">{point.name}</h3>
                             {isOnline ? (
                               <Wifi className="w-4 h-4 text-success flex-shrink-0" />
                             ) : (
@@ -250,15 +250,15 @@ export default function PointsPage() {
 
                         <div className="hidden sm:flex items-center gap-6 text-sm">
                           <div className="text-right">
-                            <p className="font-semibold text-foreground">{point.waterLevel}%</p>
+                            <p className="font-black tracking-tight text-foreground">{point.waterLevel}%</p>
                             <p className="text-xs text-muted-foreground">Nivel</p>
                           </div>
                           <div className="text-right">
-                            <p className="font-semibold text-foreground">{point.aquaRisk}/100</p>
+                            <p className="font-black tracking-tight text-foreground">{point.aquaRisk}/100</p>
                             <p className="text-xs text-muted-foreground">AquaRiesgo</p>
                           </div>
                           <div className="text-right">
-                            <p className="font-semibold text-foreground">{point.autonomy} dias</p>
+                            <p className="font-black tracking-tight text-foreground">{point.autonomy} dias</p>
                             <p className="text-xs text-muted-foreground">Autonomia</p>
                           </div>
                         </div>
@@ -269,15 +269,15 @@ export default function PointsPage() {
                       {/* Mobile metrics */}
                       <div className="sm:hidden grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-border">
                         <div className="text-center">
-                          <p className="font-semibold text-foreground">{point.waterLevel}%</p>
+                          <p className="font-black tracking-tight text-foreground">{point.waterLevel}%</p>
                           <p className="text-xs text-muted-foreground">Nivel</p>
                         </div>
                         <div className="text-center">
-                          <p className="font-semibold text-foreground">{point.aquaRisk}/100</p>
+                          <p className="font-black tracking-tight text-foreground">{point.aquaRisk}/100</p>
                           <p className="text-xs text-muted-foreground">AquaRiesgo</p>
                         </div>
                         <div className="text-center">
-                          <p className="font-semibold text-foreground">{point.autonomy}d</p>
+                          <p className="font-black tracking-tight text-foreground">{point.autonomy}d</p>
                           <p className="text-xs text-muted-foreground">Autonomia</p>
                         </div>
                       </div>
