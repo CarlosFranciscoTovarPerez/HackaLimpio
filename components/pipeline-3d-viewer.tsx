@@ -10,7 +10,7 @@ import type { PipelineId } from '@/components/community-map'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Activity, Lock, Unlock } from 'lucide-react'
+import { Activity, FileText, Lock, Unlock, X } from 'lucide-react'
 
 type Props = {
   selectedPipeline: PipelineId
@@ -246,11 +246,7 @@ function PipeScene({ selectedPipeline, valvesClosed }: SceneProps) {
 
         <mesh position={[0, 0.17, 0.04]}>
           <tubeGeometry args={[pipeCurve, 96, 0.025, 16, false]} />
-          <meshStandardMaterial
-            color="#e0f2fe"
-            transparent
-            opacity={valvesClosed ? 0.2 : 0.55}
-          />
+          <meshStandardMaterial color="#e0f2fe" transparent opacity={valvesClosed ? 0.2 : 0.55} />
         </mesh>
 
         <mesh position={[-4.7, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
@@ -356,67 +352,168 @@ function PipeScene({ selectedPipeline, valvesClosed }: SceneProps) {
 
 export function Pipeline3DViewer({ selectedPipeline }: Props) {
   const [valvesClosed, setValvesClosed] = useState(false)
+  const [reportModalOpen, setReportModalOpen] = useState(false)
+  const [reportText, setReportText] = useState('')
+  const [reportSaved, setReportSaved] = useState(false)
+
   const current = pipeData[selectedPipeline]
 
+  function handleSaveReport() {
+    if (!reportText.trim()) return
+
+    setReportSaved(true)
+    setReportModalOpen(false)
+    setReportText('')
+  }
+
+  function handleToggleValves() {
+    setValvesClosed((prev) => {
+      const next = !prev
+
+      if (!next) {
+        setReportModalOpen(false)
+        setReportSaved(false)
+        setReportText('')
+      }
+
+      return next
+    })
+  }
+
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="border-b">
-        <CardTitle className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <Activity className="h-5 w-5 text-primary" />
-            Visualización 3D - Sistema de Tuberías
-          </div>
+    <>
+      <Card className="overflow-hidden">
+        <CardHeader className="border-b">
+          <CardTitle className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <Activity className="h-5 w-5 text-primary" />
+              Visualización 3D - Sistema de Tuberías
+            </div>
 
-          <div className="flex items-center gap-2">
-            <Badge variant={valvesClosed ? 'destructive' : 'outline'} className="gap-2">
-              {valvesClosed ? 'Compuertas cerradas' : `${current.status} · ${current.risk}/100`}
-            </Badge>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant={valvesClosed ? 'destructive' : 'outline'} className="gap-2">
+                {valvesClosed ? 'Compuertas cerradas' : `${current.status} · ${current.risk}/100`}
+              </Badge>
 
-            <Button
-              size="sm"
-              variant={valvesClosed ? 'destructive' : 'default'}
-              className="gap-2"
-              onClick={() => setValvesClosed((prev) => !prev)}
-            >
-              {valvesClosed ? (
-                <>
-                  <Unlock className="h-4 w-4" />
-                  Abrir compuertas
-                </>
-              ) : (
-                <>
-                  <Lock className="h-4 w-4" />
-                  Cerrar compuertas
-                </>
+              {valvesClosed && (
+                <Button
+                  size="sm"
+                  onClick={() => setReportModalOpen(true)}
+                  className="animate-pulse gap-2 bg-red-600 text-white shadow-[0_0_0_4px_rgba(239,68,68,0.18),0_10px_24px_rgba(239,68,68,0.28)] hover:bg-red-700"
+                >
+                  <FileText className="h-4 w-4" />
+                  {reportSaved ? 'Reporte guardado' : 'Meter reporte'}
+                </Button>
               )}
-            </Button>
-          </div>
-        </CardTitle>
-      </CardHeader>
 
-      <CardContent className="p-0">
-        <div className="h-[430px] w-full bg-slate-950">
-          <Canvas camera={{ position: [0, 2.2, 7.2], fov: 45 }}>
-            <PipeScene selectedPipeline={selectedPipeline} valvesClosed={valvesClosed} />
-            <OrbitControls enablePan={false} minDistance={5} maxDistance={10} />
-          </Canvas>
-        </div>
+              <Button
+                size="sm"
+                variant={valvesClosed ? 'destructive' : 'default'}
+                className="gap-2"
+                onClick={handleToggleValves}
+              >
+                {valvesClosed ? (
+                  <>
+                    <Unlock className="h-4 w-4" />
+                    Abrir compuertas
+                  </>
+                ) : (
+                  <>
+                    <Lock className="h-4 w-4" />
+                    Cerrar compuertas
+                  </>
+                )}
+              </Button>
+            </div>
+          </CardTitle>
+        </CardHeader>
 
-        <div className="flex flex-wrap items-center gap-4 border-t bg-muted/30 p-4 text-sm">
-          <div className="font-medium">{current.title}</div>
-          <div className="text-muted-foreground">
-            Presión: {valvesClosed ? '0 PSI / tramo aislado' : current.pressure}
+        <CardContent className="p-0">
+          <div className="h-[430px] w-full bg-slate-950">
+            <Canvas camera={{ position: [0, 2.2, 7.2], fov: 45 }}>
+              <PipeScene selectedPipeline={selectedPipeline} valvesClosed={valvesClosed} />
+              <OrbitControls enablePan={false} minDistance={5} maxDistance={10} />
+            </Canvas>
           </div>
-          <div className="text-muted-foreground">
-            Flujo: {valvesClosed ? 'Detenido' : current.flow}
+
+          <div className="flex flex-wrap items-center gap-4 border-t bg-muted/30 p-4 text-sm">
+            <div className="font-medium">{current.title}</div>
+            <div className="text-muted-foreground">
+              Presión: {valvesClosed ? '0 PSI / tramo aislado' : current.pressure}
+            </div>
+            <div className="text-muted-foreground">
+              Flujo: {valvesClosed ? 'Detenido' : current.flow}
+            </div>
+            <div className="text-muted-foreground">
+              {valvesClosed
+                ? 'Acción: tramo aislado para reducir pérdida mientras llega la cuadrilla'
+                : `AquaRiesgo: ${current.risk}/100`}
+            </div>
+
+            {reportSaved && valvesClosed && (
+              <Badge variant="outline" className="border-emerald-300 bg-emerald-50 text-emerald-700">
+                Reporte registrado
+              </Badge>
+            )}
           </div>
-          <div className="text-muted-foreground">
-            {valvesClosed
-              ? 'Acción: tramo aislado para reducir pérdida mientras llega la cuadrilla'
-              : `AquaRiesgo: ${current.risk}/100`}
+        </CardContent>
+      </Card>
+
+      {reportModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-xl rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div>
+                <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3 py-1 text-xs font-bold text-red-700">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
+                  Reporte de emergencia
+                </div>
+
+                <h2 className="text-xl font-black tracking-tight text-slate-950">Registrar reporte del tramo</h2>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Describe la situación detectada, la acción tomada y cualquier observación para la cuadrilla.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setReportModalOpen(false)}
+                className="rounded-full border border-slate-200 bg-white p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900"
+                aria-label="Cerrar reporte"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="mb-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm">
+              <div className="font-bold text-slate-900">{current.title}</div>
+              <div className="mt-1 text-slate-500">
+                Estado: {current.status} · Riesgo: {current.risk}/100 · Presión:{' '}
+                {valvesClosed ? '0 PSI / tramo aislado' : current.pressure}
+              </div>
+            </div>
+
+            <textarea
+              value={reportText}
+              onChange={(event) => setReportText(event.target.value)}
+              placeholder="Ejemplo: Se cerraron compuertas por fuga detectada. Presión crítica en el tramo. Se recomienda enviar cuadrilla con prioridad alta..."
+              className="min-h-[150px] w-full resize-none rounded-2xl border border-slate-300 bg-white p-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100"
+            />
+
+            <div className="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <Button type="button" variant="outline" onClick={() => setReportModalOpen(false)}>
+                Cancelar
+              </Button>
+
+              <Button type="button" onClick={handleSaveReport} disabled={!reportText.trim()} className="gap-2">
+                <FileText className="h-4 w-4" />
+                Guardar reporte
+              </Button>
+            </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      )}
+    </>
   )
 }

@@ -191,10 +191,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
               
 
-              <Button size="sm">
-                <span className="hidden sm:inline">Generar reporte</span>
-                <FileText className="h-4 w-4 sm:hidden" />
-              </Button>
+              
             </div>
           </div>
         </header>

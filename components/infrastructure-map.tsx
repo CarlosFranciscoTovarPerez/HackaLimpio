@@ -295,7 +295,7 @@ export function InfrastructureMap() {
 
           <div className="ml-auto flex items-center gap-2 text-muted-foreground">
             <AlertTriangle className="h-4 w-4" />
-            Red de tuberías simulada sobre mapa real.
+            
           </div>
         </div>
       </CardContent>
