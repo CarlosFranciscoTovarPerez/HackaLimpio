@@ -1,55 +1,95 @@
 import {
-  BadgeCheck,
-  Building2,
-  CircleDollarSign,
-  ClipboardCheck,
-  Hotel,
+  Activity,
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
+  Droplets,
+  Gauge,
+  MapPin,
+  Power,
   Settings,
-  Shield,
-  Users,
+  SlidersHorizontal,
 } from 'lucide-react'
+
+import type { ReactNode } from 'react'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-const planes = [
+const zonasPresion = [
   {
-    nombre: 'Software',
-    precio: '$4,999 / mes',
-    ideal: 'Hoteles que ya tienen sensores o medidores.',
+    zona: 'Línea principal',
+    ubicacion: 'Entrada general del hotel',
+    presion: '18 PSI',
+    estado: 'Baja',
+    color: 'border-destructive/30 bg-destructive/10 text-destructive',
+    accion: 'Revisar fuga o válvula parcialmente abierta.',
   },
   {
-    nombre: 'Software + sensores',
-    precio: '$9,999 / mes',
-    ideal: 'Hoteles que necesitan monitoreo desde cero.',
+    zona: 'Torre huéspedes',
+    ubicacion: 'Habitaciones y baños',
+    presion: '32 PSI',
+    estado: 'Normal',
+    color: 'border-green-300 bg-green-100 text-green-700',
+    accion: 'Mantener monitoreo automático.',
   },
   {
-    nombre: 'Municipal',
-    precio: 'Desde $29,999 / mes',
-    ideal: 'Municipios o concesionarias con varias zonas.',
+    zona: 'Lavandería',
+    ubicacion: 'Área de servicio',
+    presion: '46 PSI',
+    estado: 'Alta',
+    color: 'border-yellow-300 bg-yellow-100 text-yellow-700',
+    accion: 'Regular presión para evitar desgaste en tuberías.',
+  },
+  {
+    zona: 'Riego exterior',
+    ubicacion: 'Jardines y áreas comunes',
+    presion: '24 PSI',
+    estado: 'Aceptable',
+    color: 'border-blue-300 bg-blue-100 text-blue-700',
+    accion: 'Programar riego fuera de horas pico.',
   },
 ]
 
-const roles = [
+const reglasPresion = [
   {
-    nombre: 'Administrador',
-    permiso: 'Configura usuarios, planes, zonas y reportes.',
+    titulo: 'Presión mínima',
+    valor: '25 PSI',
+    descripcion: 'Si baja de este valor, se genera alerta por posible fuga o falta de suministro.',
   },
   {
-    nombre: 'Operador',
-    permiso: 'Revisa alertas, sensores y prioridades.',
+    titulo: 'Presión ideal',
+    valor: '30 - 40 PSI',
+    descripcion: 'Rango recomendado para mantener buen servicio sin forzar la red.',
   },
   {
-    nombre: 'Cuadrilla',
-    permiso: 'Consulta órdenes asignadas y actualiza avances.',
+    titulo: 'Presión máxima',
+    valor: '45 PSI',
+    descripcion: 'Si supera este valor, se recomienda regular válvula o bomba.',
   },
 ]
 
-const configuracion = [
-  'Zonas monitoreadas',
-  'Sensores activos',
-  'Usuarios y permisos',
-  'Reportes mensuales',
+const accionesAutomaticas = [
+  {
+    titulo: 'Alerta por presión baja',
+    estado: 'Activa',
+    descripcion: 'Notifica cuando una zona baja del mínimo permitido.',
+  },
+  {
+    titulo: 'Registro de presión cada minuto',
+    estado: 'Activa',
+    descripcion: 'Guarda lecturas para detectar patrones anormales.',
+  },
+  {
+    titulo: 'Modo ahorro nocturno',
+    estado: 'Programado',
+    descripcion: 'Reduce presión en zonas de bajo consumo durante la noche.',
+  },
+  {
+    titulo: 'Bloqueo por presión crítica',
+    estado: 'Manual',
+    descripcion: 'Permite cerrar una zona si hay fuga grave.',
+  },
 ]
 
 export default function AdminPage() {
@@ -58,23 +98,44 @@ export default function AdminPage() {
       <section className="rounded-2xl border bg-card p-6">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-            <Shield className="h-6 w-6 text-primary" />
+            <Gauge className="h-6 w-6 text-primary" />
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Administración</h1>
+            <h1 className="text-2xl font-bold text-foreground">
+              Administración de presión
+            </h1>
             <p className="text-sm text-muted-foreground">
-              Controla usuarios, planes, configuración y operación del servicio.
+              Configura zonas, límites y acciones para controlar la presión del agua.
             </p>
           </div>
         </div>
       </section>
 
       <div className="grid gap-4 md:grid-cols-4">
-        <Resumen icon={<Hotel className="h-5 w-5" />} titulo="Cliente piloto" valor="Hotel" />
-        <Resumen icon={<Building2 className="h-5 w-5" />} titulo="Zonas" valor="4" />
-        <Resumen icon={<Users className="h-5 w-5" />} titulo="Usuarios" valor="8" />
-        <Resumen icon={<CircleDollarSign className="h-5 w-5" />} titulo="Plan actual" valor="SaaS" />
+        <Resumen
+          icon={<Gauge className="h-5 w-5" />}
+          titulo="Presión promedio"
+          valor="30 PSI"
+        />
+
+        <Resumen
+          icon={<AlertTriangle className="h-5 w-5" />}
+          titulo="Zonas en alerta"
+          valor="2"
+        />
+
+        <Resumen
+          icon={<Droplets className="h-5 w-5" />}
+          titulo="Zonas activas"
+          valor="4"
+        />
+
+        <Resumen
+          icon={<Activity className="h-5 w-5" />}
+          titulo="Lecturas hoy"
+          valor="1,284"
+        />
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
@@ -82,20 +143,49 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <CircleDollarSign className="h-5 w-5 text-primary" />
-                Planes de cobro
+                <MapPin className="h-5 w-5 text-primary" />
+                Zonas de presión
               </CardTitle>
             </CardHeader>
 
-            <CardContent className="grid gap-4 md:grid-cols-3">
-              {planes.map((plan) => (
-                <div key={plan.nombre} className="rounded-2xl border bg-muted/30 p-4">
-                  <Badge variant="outline" className="mb-3 bg-background">
-                    {plan.nombre}
-                  </Badge>
+            <CardContent className="grid gap-4 lg:grid-cols-2">
+              {zonasPresion.map((zona) => (
+                <div key={zona.zona} className="rounded-2xl border bg-muted/30 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-foreground">{zona.zona}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {zona.ubicacion}
+                      </p>
+                    </div>
 
-                  <p className="text-xl font-bold text-primary">{plan.precio}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{plan.ideal}</p>
+                    <Badge variant="outline" className={zona.color}>
+                      {zona.estado}
+                    </Badge>
+                  </div>
+
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    <Dato
+                      icon={<Gauge className="h-4 w-4" />}
+                      label="Presión actual"
+                      value={zona.presion}
+                    />
+
+                    <Dato
+                      icon={<Clock className="h-4 w-4" />}
+                      label="Última lectura"
+                      value="hace 1 min"
+                    />
+                  </div>
+
+                  <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-3">
+                    <p className="text-sm font-medium text-foreground">
+                      Acción sugerida
+                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {zona.accion}
+                    </p>
+                  </div>
                 </div>
               ))}
             </CardContent>
@@ -104,16 +194,21 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Users className="h-5 w-5 text-primary" />
-                Roles del sistema
+                <SlidersHorizontal className="h-5 w-5 text-primary" />
+                Límites de presión
               </CardTitle>
             </CardHeader>
 
-            <CardContent className="grid gap-3 md:grid-cols-3">
-              {roles.map((rol) => (
-                <div key={rol.nombre} className="rounded-xl border bg-muted/30 p-4">
-                  <p className="font-semibold text-foreground">{rol.nombre}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{rol.permiso}</p>
+            <CardContent className="grid gap-4 md:grid-cols-3">
+              {reglasPresion.map((regla) => (
+                <div key={regla.titulo} className="rounded-2xl border bg-muted/30 p-4">
+                  <p className="text-sm text-muted-foreground">{regla.titulo}</p>
+                  <p className="mt-2 text-2xl font-bold text-primary">
+                    {regla.valor}
+                  </p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {regla.descripcion}
+                  </p>
                 </div>
               ))}
             </CardContent>
@@ -125,15 +220,23 @@ export default function AdminPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Settings className="h-5 w-5 text-primary" />
-                Configuración rápida
+                Acciones automáticas
               </CardTitle>
             </CardHeader>
 
             <CardContent className="space-y-3">
-              {configuracion.map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-xl border bg-muted/30 p-3">
-                  <BadgeCheck className="h-5 w-5 text-primary" />
-                  <p className="font-medium text-foreground">{item}</p>
+              {accionesAutomaticas.map((accion) => (
+                <div key={accion.titulo} className="rounded-xl border bg-muted/30 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-foreground">{accion.titulo}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {accion.descripcion}
+                      </p>
+                    </div>
+
+                    <Badge variant="outline">{accion.estado}</Badge>
+                  </div>
                 </div>
               ))}
             </CardContent>
@@ -142,18 +245,35 @@ export default function AdminPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <ClipboardCheck className="h-5 w-5 text-primary" />
-                Uso en el proyecto
+                <Power className="h-5 w-5 text-primary" />
+                Control operativo
               </CardTitle>
             </CardHeader>
 
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Esta sección sirve para administrar el sistema: usuarios, permisos,
-                planes de cobro y configuración del cliente. Para el MVP del hackatón,
-                ayuda a demostrar que la solución puede venderse primero a hoteles
-                y después escalar a municipios.
-              </p>
+            <CardContent className="space-y-3">
+              <ControlItem
+                icon={<CheckCircle2 className="h-5 w-5 text-green-600" />}
+                titulo="Bomba principal"
+                estado="Encendida"
+              />
+
+              <ControlItem
+                icon={<CheckCircle2 className="h-5 w-5 text-green-600" />}
+                titulo="Válvula línea principal"
+                estado="Abierta"
+              />
+
+              <ControlItem
+                icon={<AlertTriangle className="h-5 w-5 text-yellow-600" />}
+                titulo="Válvula lavandería"
+                estado="Regular presión"
+              />
+
+              <ControlItem
+                icon={<CheckCircle2 className="h-5 w-5 text-green-600" />}
+                titulo="Modo monitoreo"
+                estado="Activo"
+              />
             </CardContent>
           </Card>
         </div>
@@ -167,7 +287,7 @@ function Resumen({
   titulo,
   valor,
 }: {
-  icon: React.ReactNode
+  icon: ReactNode
   titulo: string
   valor: string
 }) {
@@ -177,11 +297,55 @@ function Resumen({
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
           {icon}
         </div>
+
         <div>
           <p className="text-2xl font-bold text-foreground">{valor}</p>
           <p className="text-sm text-muted-foreground">{titulo}</p>
         </div>
       </CardContent>
     </Card>
+  )
+}
+
+function Dato({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode
+  label: string
+  value: string
+}) {
+  return (
+    <div className="rounded-xl border bg-background p-3">
+      <p className="flex items-center gap-2 text-xs text-muted-foreground">
+        {icon}
+        {label}
+      </p>
+      <p className="mt-1 font-semibold text-foreground">{value}</p>
+    </div>
+  )
+}
+
+function ControlItem({
+  icon,
+  titulo,
+  estado,
+}: {
+  icon: ReactNode
+  titulo: string
+  estado: string
+}) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border bg-muted/30 p-3">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background">
+        {icon}
+      </div>
+
+      <div>
+        <p className="font-medium text-foreground">{titulo}</p>
+        <p className="text-sm text-muted-foreground">{estado}</p>
+      </div>
+    </div>
   )
 }
